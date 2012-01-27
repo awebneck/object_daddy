@@ -1,3 +1,7 @@
+if defined?(Rails) && Rails::VERSION::MAJOR == 3
+  require 'object_daddy/railtie'
+end
+
 module ObjectDaddy
 
   def self.included(klass)
