@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "object-daddy"
-  s.version = "1.0.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Rick Bradley", "Yossef Mendelssohn", "Jeremy Holland"]
-  s.date = "2012-04-07"
+  s.date = "2012-04-08"
   s.description = "Object Daddy is a library (as well as a Ruby on Rails plugin) designed to assist in automating testing of large collections of objects, especially webs of ActiveRecord models. It is a descendent of the \"Object Mother\" pattern for creating objects for testing, and is related to the concept of an \"object exemplar\" or stereotype."
   s.email = ["blogicx@rickbradley.com", "ymendel@pobox.com", "jeremy@jeremypholland.com"]
   s.extra_rdoc_files = [
@@ -49,7 +49,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.3"])
-      s.add_development_dependency(%q<rails>, ["~> 3.1.4"])
+      s.add_development_dependency(%q<rails>, [">= 3.0.0"])
       s.add_development_dependency(%q<generator_spec>, [">= 0"])
       s.add_development_dependency(%q<sqlite3>, [">= 0"])
       s.add_development_dependency(%q<rspec-rails>, [">= 0"])
@@ -60,7 +60,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
-      s.add_dependency(%q<rails>, ["~> 3.1.4"])
+      s.add_dependency(%q<rails>, [">= 3.0.0"])
       s.add_dependency(%q<generator_spec>, [">= 0"])
       s.add_dependency(%q<sqlite3>, [">= 0"])
       s.add_dependency(%q<rspec-rails>, [">= 0"])
@@ -72,7 +72,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rdoc>, ["~> 3.12"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
-    s.add_dependency(%q<rails>, ["~> 3.1.4"])
+    s.add_dependency(%q<rails>, [">= 3.0.0"])
     s.add_dependency(%q<generator_spec>, [">= 0"])
     s.add_dependency(%q<sqlite3>, [">= 0"])
     s.add_dependency(%q<rspec-rails>, [">= 0"])
