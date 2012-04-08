@@ -18,6 +18,16 @@ exemplar" or _stereotype_.
 
 See [http://b.logi.cx/2007/11/26/object-daddy](http://b.logi.cx/2007/11/26/object-daddy) for inspiration, historical drama, and too much reading.
 
+## Compatibility
+
+Object Daddy does not require Rails/ActiveRecord in order to be of use, but should you be doing so, be aware that
+this gem is compatible only with Rails >= 3.0.0. It has been tested with the following versions, but should be
+perfectly compatible with all corresponding minor releases.
+
+- Rails 3.0.12
+- Rails 3.1.4
+- Rails 3.2.3
+
 ## Installation
 
 Add the following to your Gemfile and run `bundle install`
@@ -26,7 +36,7 @@ Add the following to your Gemfile and run `bundle install`
       gem 'object-daddy'
     end
 
-Once installed, to set up your exemplars directory, run `rails g object-daddy`
+Once installed, to set up your exemplars directory, run `rails g object-daddy` (if using with Rails)
 
 ## Using Object Daddy
 

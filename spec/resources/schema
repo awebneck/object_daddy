@@ -4,12 +4,14 @@ ActiveRecord::Schema.define(:version => 0) do
     t.column :title, :string
     t.column :foo_id, :integer
     t.column :baz_id, :integer
+    t.column :bar_id, :integer
     t.column :thing_id, :integer
     t.column :splort_id, :integer
     t.column :bangbang_id, :integer
     t.column :wakka_id, :integer
     t.column :blitblot_id, :integer
     t.column :poolie_id, :integer
+    t.column :type, :string
   end
 
   create_table :foos, :force => true do |t|
