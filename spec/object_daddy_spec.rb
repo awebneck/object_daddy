@@ -637,11 +637,11 @@ describe ObjectDaddy, "when integrated with Rails" do
   it "should provide a means of generating and saving a class instance" do
     Frobnitz.should respond_to(:generate)
   end
-  
+
   it "should provide a means of generating and saving a class instance while raising exceptions" do
     Frobnitz.should respond_to(:generate!)
   end
-  
+
   describe "and a block is passed to generate" do
     it "should yield the instance to the block" do
       yielded_object = nil
