@@ -89,6 +89,15 @@ module ObjectDaddy
       end
     end
 
+    def reset_generators
+      generators.each do |handle, generator|
+        if generator[:generator][:initial]
+          generator[:generator][:start] = generator[:generator][:initial]
+        end
+        generator[:generator].delete :prev
+      end
+    end
+
     def generates_subclass(subclass_name)
       @concrete_subclass_name = subclass_name.to_s
     end
@@ -159,6 +168,7 @@ module ObjectDaddy
     def process_generated_value(args, handle, generator, block)
       if generator[:start]
         value = generator[:start]
+        generator[:initial] = value
         generator.delete(:start)
       else
         if block.arity == 0

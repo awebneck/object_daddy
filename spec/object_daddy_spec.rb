@@ -264,6 +264,33 @@ describe ObjectDaddy, 'when registering exemplars' do
   end
 end
 
+describe ObjectDaddy, "when resetting a class instance" do
+  before(:each) do
+    @class = Class.new(OpenStruct)
+    @class.send(:include, ObjectDaddy)
+    @file_path = [File.join(File.dirname(__FILE__), 'tmp')]
+    @file_name = File.join(@file_path, 'widget_exemplar.rb')
+    @class.stubs(:exemplar_path).returns(@file_path)
+    @class.stubs(:name).returns('Widget')
+  end
+
+  it "should return the initial value once more after calling if the start value is specified" do
+    @class.generator_for :foo, :start => 'frobnitz' do |prev| prev + 'a'; end
+    @class.spawn
+    @class.spawn
+    @class.reset_generators
+    @class.spawn.foo.should == 'frobnitz'
+  end
+
+  it "should pass nil for the previous item after calling" do
+    @class.generator_for :foo do |prev| prev ? prev.succ : 'hats'; end
+    @class.spawn
+    @class.spawn
+    @class.reset_generators
+    @class.spawn.foo.should == 'hats'
+  end
+end
+
 describe ObjectDaddy, "when spawning a class instance" do
   before(:each) do
     @class = Class.new(OpenStruct)
