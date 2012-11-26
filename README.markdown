@@ -137,6 +137,10 @@ A simple default block is provided for any generator with a :start value.
       generator_for :name, :start => 'Joe'  # equivalent to the above
     end
 
+You can reset a class' generators to their initial value by calling: 
+
+    User.reset_generators!
+
 The _:method_ form takes a symbol naming a class method in the model class to be
 called to generate a new value for the attribute in question. If the method
 takes a single argument, it will act much like the block method of invocation,

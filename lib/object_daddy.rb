@@ -89,7 +89,7 @@ module ObjectDaddy
       end
     end
 
-    def reset_generators
+    def reset_generators!
       generators.each do |handle, generator|
         if generator[:generator][:initial]
           generator[:generator][:start] = generator[:generator][:initial]

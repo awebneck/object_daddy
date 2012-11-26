@@ -278,7 +278,7 @@ describe ObjectDaddy, "when resetting a class instance" do
     @class.generator_for :foo, :start => 'frobnitz' do |prev| prev + 'a'; end
     @class.spawn
     @class.spawn
-    @class.reset_generators
+    @class.reset_generators!
     @class.spawn.foo.should == 'frobnitz'
   end
 
@@ -286,7 +286,7 @@ describe ObjectDaddy, "when resetting a class instance" do
     @class.generator_for :foo do |prev| prev ? prev.succ : 'hats'; end
     @class.spawn
     @class.spawn
-    @class.reset_generators
+    @class.reset_generators!
     @class.spawn.foo.should == 'hats'
   end
 end
