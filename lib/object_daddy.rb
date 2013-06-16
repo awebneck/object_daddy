@@ -200,7 +200,7 @@ module ObjectDaddy
 
   module RailsClassMethods
     def exemplar_path
-      paths = ['spec', 'test'].inject([]) do |array, dir|
+      ['spec', 'test'].inject([]) do |array, dir|
         if File.directory?(File.join(Rails.root, dir))
           array << File.join(Rails.root, dir, 'exemplars')
         end
@@ -262,7 +262,7 @@ module ObjectDaddy
   end
 end
 
-unless ActiveRecord::Base.respond_to? :inherited_with_object_daddy
+unless !defined?(ActiveRecord) || ActiveRecord::Base.respond_to?(:inherited_with_object_daddy)
   class ActiveRecord::Base
     def self.inherited_with_object_daddy(subclass)
       self.inherited_without_object_daddy(subclass)
