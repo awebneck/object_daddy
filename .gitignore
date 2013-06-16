@@ -2,6 +2,8 @@ log
 vendor
 spec/tmp/*
 .rvmrc
+.ruby-version
+.rbenv-gemsets
 
 # bundler
 .bundle
