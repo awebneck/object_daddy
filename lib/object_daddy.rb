@@ -3,7 +3,7 @@ module ObjectDaddy
   def self.included(klass)
     klass.extend ClassMethods
     if defined? ActiveRecord and klass < ActiveRecord::Base
-      klass.extend RailsClassMethods
+      klass.extend ActiveRecordClassMethods
 
       class << klass
         alias_method :validates_presence_of_without_object_daddy, :validates_presence_of
@@ -130,7 +130,7 @@ module ObjectDaddy
 
   protected
 
-    # we define an underscore helper ourselves since the ActiveSupport isn't available if we're not using Rails
+    # we define an underscore helper ourselves since the ActiveSupport isn't available if we're not using AR
     def underscore(string)
       string.gsub(/([a-z])([A-Z])/, '\1_\2').gsub(/::/,'_').downcase
     end
@@ -186,9 +186,9 @@ module ObjectDaddy
         (presence_validated_attributes.keys - args.keys).each {|a| req[a.to_s] = true } # find attributes required by validates_presence_of not already set
 
         belongs_to_associations = reflect_on_all_associations(:belongs_to).to_a
-        fk_method = Rails.version >= "3.1.0" ? :foreign_key : :primary_key_name
+        fk_method = ActiveRecord::VERSION::STRING >= "3.1.0" ? :foreign_key : :primary_key_name
         missing = belongs_to_associations.select { |a|  req[a.name.to_s] or req[a.send(fk_method).to_s] }
-        # Rails 3.1 compatibility jazz - current_scoped_methods was deprecated.
+        # AR 3.1 compatibility jazz - current_scoped_methods was deprecated.
         if scope = respond_to?(:current_scoped_methods) ? current_scoped_methods : current_scope
           missing.reject! { |a| scope.scope_for_create.include?(a.send(fk_method)) }
         end
@@ -198,11 +198,19 @@ module ObjectDaddy
     end
   end
 
-  module RailsClassMethods
+  module ActiveRecordClassMethods
+    def root_dir
+      if defined? Rails
+        Rails.root
+      else
+        ENV['ROOT_DIR'] || ENV['PWD']
+      end
+    end
+
     def exemplar_path
       ['spec', 'test'].inject([]) do |array, dir|
-        if File.directory?(File.join(Rails.root, dir))
-          array << File.join(Rails.root, dir, 'exemplars')
+        if File.directory?(File.join(root_dir, dir))
+          array << File.join(root_dir, dir, 'exemplars')
         end
         array
       end
